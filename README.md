@@ -48,23 +48,45 @@
  * callback_complete            发送请求前可以修改XMLHttpRequest对象的函数，例如添加自定义HTTP头。在beforeSend中如果返回false可以取消本次ajax请求
  * callback_WeChatBrower        是否是微信浏览器[function () {
  *                              location.href = window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + opts.appId || '00000000';
-                                 }] [静态调用、实例调用]
-
+ *                                }] [静态调用、实例调用]
+ *
  *
  *
  * 用法 API:
- //初始化微信基础信息
- $.WeChart({
-    api: 'http://10.20.26.19:8544/Wechart/WeChat.asmx/GetWeChatParamters',
-    callback_success: function (result) {
-        var data = JSON.parse(result.children[0].innerHTML);
-        this.appId = data.APPID;
-        this.timestamp = data.TIMESTAMP;
-        this.nonceStr = data.NONCESTR;
-        this.signature = data.SIGNATURE;
-    },
-    scanAuthUrl: "http://152l8u0817.51mypc.cn/jt/wechart/index.html",
-    typenum: 2,
+ * 初始化微信基础信息
+ * $.WeChart({
+ *   api: 'http://10.20.26.19:8544/Wechart/WeChat.asmx/GetWeChatParamters',
+ *   callback_success: function (result) {
+ *       var data = JSON.parse(result.children[0].innerHTML);
+ *       this.appId = data.APPID;
+ *       this.timestamp = data.TIMESTAMP;
+ *       this.nonceStr = data.NONCESTR;
+ *       this.signature = data.SIGNATURE;
+ *   },
+ *   scanAuthUrl: "http://152l8u0817.51mypc.cn/jt/wechart/index.html",
+ *   typenum: 2,
+ *   facid: 10,
+ *   分享到朋友圈: true,
+ *   forword_title: 'cccccccccccccccc',
+ *   forword_link: 'http://www.baidu.com/'
+ *  });
+
+ * 当前页面可以转发
+ * $.Forword();
+ *
+ * 微信初始化失败回调
+ * $.InitWxError(function (res) {
+ *           alert('初始化失败！')
+ * });
+
+ * 按钮5可以调取摄像头
+ * $("#btn5").Scan();
+
+ * 按钮6可以调取摄像头
+ * $("#btn6").Scan();
+
+
+  */
     facid: 10,
     分享到朋友圈: true,
     forword_title: 'cccccccccccccccc',
